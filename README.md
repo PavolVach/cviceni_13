@@ -1,2 +1,2 @@
-# cviceni_13
+# CV1
 Created with CodeSandbox
