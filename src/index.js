@@ -22,15 +22,12 @@ import "@babylonjs/inspector";
 import { meshUboDeclaration } from "@babylonjs/core/Shaders/ShadersInclude/meshUboDeclaration";
 import { waterPixelShader } from "@babylonjs/materials/water/water.fragment";
 
-
 //canvas je grafické okno, to rozáhneme přes obrazovku
 const canvas = document.getElementById("renderCanvas");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 const engine = new Engine(canvas, true);
-
-
 
 //scéna neměnit
 const scene = new Scene(engine);
@@ -57,7 +54,6 @@ for (i = 0; i < 3; i++) {
     { diameter: 0.00002, height: 3 },
     scene
   );
-
 }
 
 //světlo
@@ -67,7 +63,7 @@ const light1 = new DirectionalLight(
   scene
 );
 
-var freza = sphere;
+var vreteno = sphere;
 var zasobnik = [];
 
 SceneLoader.ImportMesh("", "public/", "vretenoo.glb", scene, function (
@@ -78,9 +74,8 @@ SceneLoader.ImportMesh("", "public/", "vretenoo.glb", scene, function (
   newMeshes[0].rotate(new Vector3(-1, 0, 0), Math.PI / 2);
   newMeshes[0].position.z = -2;
   newMeshes[0].position.x = 1;
-  freza = newMeshes[0];
+  vreteno = newMeshes[0];
 
- 
   //var i = 0;
   //for (i = 0; i < 1; i++) {
   //vreteno = newMeshes[0].clone("vreteno" + i, newMeshes[0].parent, false);
@@ -91,13 +86,12 @@ SceneLoader.ImportMesh("", "public/", "vretenoo.glb", scene, function (
 
 scene.registerBeforeRender(function () {
   //pohyb frézy
-    freza.rotate(new Vector3(-1, 0, 0), (freza.rotation.x += 0.001));
-  });
+  vreteno.rotate(new Vector3(-1, 0, 0), (vreteno.rotation.x += 0.001));
+});
 
 //zde uděláme animaci
 
-
-  // povinné vykreslování
+// povinné vykreslování
 engine.runRenderLoop(function () {
   scene.render();
 });
